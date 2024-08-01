@@ -1,0 +1,23 @@
+%!tex program = lualatex
+\documentclass[a4paper]{ctexbook}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% silent warnings
+\usepackage{silence}
+\WarningFilter{latexfont}{Font shape}
+\WarningFilter{latexfont}{Size substitution}
+\WarningFilter{latexfont}{Some font}
+\WarningFilter{layouts}{Layout scale}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% minted settings 
+\usepackage[outputdir=build]{minted}
+\newmintinline[viminline]{vim}{breaklines, breakbefore=\space}
+\newmintinline[shinline]{shell}{breaklines}
+\newcommand\showdim[1]{\texinline{#1}=\the#1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{csquotes}
+\begin{document}
+\include{杂记}
+\end{document}

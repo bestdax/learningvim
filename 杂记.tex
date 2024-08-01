@@ -1,0 +1,25 @@
+\chapter{杂记}
+记录各种杂七杂八的内容，等内容成体系了以后再转到相应的分类。
+
+\section{数字格式选项}
+\viminline{nrformats(nf)} 数字格式选项（默认值为 \viminline{bin,hex})
+
+这定义了 \viminline{Vim} 在使用 \viminline{CTRL-A} 和 \viminline{CTRL-X}
+命令分别对数字进行增加和减去操作时，将考虑哪些数制。
+\begin{itemize}
+	\item \viminline{alpha} 如果包含，单个字母字符将被递增或递减。这对于带有字母索引的列表非常有用，例如 \viminline{a, b} 等。
+	\item \viminline{octal} 如果包含，以零开头的数字将被视为八进制。示例：在 \viminline{007} 上使用\viminline{CTRL-A}的结果是 \viminline{010}。
+	\item \viminline{hex} 如果包含，以 \viminline{0x} 或 \viminline{0X} 开头的数字将被视为十六进制。示例：在 \viminline{0x100} 上使用\viminline{CTRL-X}的结果是 \viminline{0x0ff}。
+	\item \viminline{bin} 如果包含，以 \viminline{0b} 或 \viminline{0B} 开头的数字将被视为二进制。示例：在 \viminline{0b1000} 上使用\viminline{CTRL-X}减去一，结果是 \viminline{0b0111}。
+	\item \viminline{unsigned} 如果包含，数字将被识别为无符号数。因此，前导短划线或负号不会被视为数字的一部分。示例：
+	      \begin{itemize}
+		      \item 在 \viminline{9-2020} 中使用\viminline{CTRL-X}得到 \viminline{9-2019}（不包含 \viminline{unsigned} 则会变成 \viminline{9-2021}）。
+		      \item 在 \viminline{9-2020} 中使用\viminline{CTRL-A}得到 \viminline{9-2021}（不包含 \viminline{unsigned} 则会变成 \viminline{9-2019}）。
+		      \item 使用\viminline{CTRL-X}在 \viminline{0} 上或使用\viminline{CTRL-A}在 \viminline{18446744073709551615}（
+		            \( 2^{64} - 1 \)）上没有效果，防止溢出。
+	      \end{itemize}
+\end{itemize}
+
+以 \viminline{1} 到 \viminline{9} 范围内的数字开头的数字始终被视为十进制。这也适用于不被识别为八进制或十六进制的数字。
+
+我个人最主要用在需要将字母递增的时候，用\viminline{set nf+=alpha}来增加字母选项，不过用完后记得恢复。
